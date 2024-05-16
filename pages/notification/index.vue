@@ -4,7 +4,7 @@ definePageMeta({
   alias: '/notifikasi'
 })
 
-const { $api } = useNuxtApp()
+const { $api, $toast } = useNuxtApp()
 const router = useRouter()
 
 const dataNotification = ref([])

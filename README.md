@@ -12,10 +12,6 @@
 # Toast -> https://vue3-toastify.js-bridge.com/api/toast.html
 ```
 
-#Information for component
-- if component not use callback in prefix using 'C'
-- component use callback using prefix 'Re'
-
 # information folder
 ```bash
 # assets
@@ -23,9 +19,6 @@
 
 # components
 # global component, if spesific component, you can create component in the folder in every features
-
-# constants
-# define form or status every features
 
 # layout
 # layout of page

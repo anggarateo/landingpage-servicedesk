@@ -8,7 +8,7 @@ ENV NODE_ENV=production
 
 # Copy Source code
 COPY . .
-RUN cp .env.development .env
+RUN cp .env.example .env
 
 # Build & tag image
 RUN npm run build
