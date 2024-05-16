@@ -2,30 +2,10 @@
 import { $fetch, FetchOptions } from 'ofetch'
 
 // locals
-import AuthModule from '~/repository/modules/auth/auth'
 import GlobalModule from '~/repository/modules/index'
-import { GetRoleModule, PostRoleModule } from '~/repository/modules/role'
-import FaqModule from '~/repository/modules/faq'
-import ProfileModule from '~/repository/modules/auth/profile'
-import CatalogueModule from '~/repository/modules/catalogue'
-import TicketModule from '~/repository/modules/ticket'
-import ChatModule from '~/repository/modules/chat'
-import NotificationModule from '~/repository/modules/notification'
-import RegisterModule from '~/repository/modules/auth/register'
-import ReportModule from '~/repository/modules/report'
 
 interface IApiInstance {
-  auth: AuthModule;
   global: GlobalModule;
-  role: { get: GetRoleModule, post: PostRoleModule };
-  faq: FaqModule;
-  profile: ProfileModule
-  catalogue: CatalogueModule
-  ticket: TicketModule
-  chat: ChatModule
-  notification: NotificationModule
-  register: RegisterModule
-  report: ReportModule
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -53,17 +33,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // An object containing all repositories we need to expose
   const modules: IApiInstance = {
-    auth: new AuthModule(apiFecther),
-    global: new GlobalModule(apiFecther),
-    role: { get: new GetRoleModule(apiFecther), post: new PostRoleModule(apiFecther) },
-    faq: new FaqModule(apiFecther),
-    profile: new ProfileModule(apiFecther),
-    catalogue: new CatalogueModule(apiFecther),
-    ticket: new TicketModule(apiFecther),
-    chat: new ChatModule(apiFecther),
-    notification: new NotificationModule(apiFecther),
-    register: new RegisterModule(apiFecther),
-    report: new ReportModule(apiFecther)
+    global: new GlobalModule(apiFecther)
   }
 
   return {
