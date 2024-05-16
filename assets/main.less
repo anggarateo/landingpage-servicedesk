@@ -1,0 +1,77 @@
+@import '@/assets/scrollbar.less';
+@import 'vue-select/dist/vue-select.css';
+@import '@vuepic/vue-datepicker/dist/main.css';
+@import 'vue-final-modal/style.css';
+@import 'vue3-easy-data-table/dist/style.css';
+@import '@vueform/toggle/themes/default.css';
+@import 'vue3-toastify/dist/index.css';
+@import 'vue3-carousel/dist/carousel.css';
+@import "v3-infinite-loading/lib/style.css";
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+}
+  
+// v-select
+.style-chooser .vs__dropdown-toggle,
+.style-chooser .vs__dropdown-menu { @apply border border-neutral-300 rounded-xl p-2; }
+.style-chooser .vs__dropdown-option--highlight { @apply bg-primary rounded-xl mx-1; }
+.style-chooser .vs__search::placeholder { @apply text-neutral-300; }
+.style-chooser{
+  --vs-search-input-placeholder-color: #B4B4B4;
+  --vs-line-height: 36px;
+}
+// v-select
+
+// datepicker
+.dp__preset_range { @apply text-primary text-center; }
+.dp__range_between { @apply text-primary; }
+.dp__range_start, .dp__range_end { @apply bg-primary; }
+.dp__action_select { @apply bg-primary hover:bg-primary-600; }
+.dp__pointer { @apply rounded; }
+.dp__calendar_header { @apply font-normal text-neutral/50; }
+.dp__month_year_wrap { @apply font-bold; }
+.dp__selection_preview { @apply text-primary; }
+.dp__action_buttons { @apply gap-4; }
+// datepicker
+
+// easy-table
+.template-table {
+  --easy-table-header-background-color: #F6F8FB;
+  --easy-table-header-item-padding: 16px;
+  --easy-table-header-font-color: #B4B4B4;
+  --easy-table-header-font-size: 14px;
+  --easy-table-body-row-font-size: 16px;
+  --easy-table-body-item-padding: 16px;
+  --easy-table-footer-font-size: 16px;	
+  --easy-table-footer-padding: 16px;
+  --easy-table-footer-height: 50px
+}
+// easy-table
+
+// transition
+// fade
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-in;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+// transition
+
+// hide input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+// hide input number

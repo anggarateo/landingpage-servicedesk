@@ -1,0 +1,82 @@
+build-docker-image:
+  image: reg.bpbatam.go.id/library/docker
+  before_script:
+    - docker login -u "$HARBOR_USERNAME_FATHONI" -p "$HARBOR_PASSWORD_FATHONI" $HARBOR_HOST
+  stage: build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:dev .
+    - docker push $CI_REGISTRY_IMAGE:dev
+  only:
+    - dev
+
+deploy-to-dev:
+  stage: deploy
+  image: manggalateknologi/alpine-ssh
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh root@$BP_DEV_HOST "kubectl delete -f $DEPLOYMENT_FILE && kubectl create -f $DEPLOYMENT_FILE && exit"
+  only:
+    - dev
+
+build-docker-image-prod:
+  image: reg.bpbatam.go.id/library/docker
+  before_script:
+    - docker login -u "$HARBOR_USERNAME_FATHONI" -p "$HARBOR_PASSWORD_FATHONI" $HARBOR_HOST
+  stage: build
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:prod -f prod.Dockerfile .
+    - docker push $CI_REGISTRY_IMAGE:prod
+  only:
+    - master
+
+deploy-to-prod:
+  stage: deploy
+  image: manggalateknologi/alpine-ssh
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh root@$BP_PROD_HOST "kubectl delete -f $DEPLOYMENT_FILE && kubectl create -f $DEPLOYMENT_FILE && exit"
+
+  only:
+    - master
+
+build-docker-image-dev-manggala:
+  stage: build
+  only:
+    - manggala
+  image: docker:20.10.22
+  services:
+    - name: docker:20.10.22-dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:dev .
+    - docker push $CI_REGISTRY_IMAGE:dev
+
+deploy-to-dev-manggala:
+  stage: deploy
+  image: manggalateknologi/alpine-ssh
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh root@$BP_DEV_HOST "kubectl delete -f $DEPLOYMENT_FILE && kubectl create -f $DEPLOYMENT_FILE && exit"
+  only:
+    - manggala
+  image: kroniak/ssh-client
+  before_script:
+    - echo "mulai deploy ke server"
+  script:
+   - chmod 400 $SSH_PRIVATE_KEY
+   - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SSH_ADDRESS "cd /home/b-care && docker compose pull && docker compose up -d --build backend"
+   - echo "Deploy successfully!"
+   
