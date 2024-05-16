@@ -120,4 +120,4 @@ Berikut module pendukung :
 - [Work flow](https://whimsical.com/work-flow-C761mdmTDVxexAB32Ch7yC).
 - [Site map](https://whimsical.com/sitemap-XnoJmpWt1WD73URmebWDC2).
 - [Task flow](https://whimsical.com/task-flow-XV3YRbqtUBTYPKaxnMFHHL).
-- [Scrum] (https://scrum.bpbatam.go.id).
+- [Scrum](https://scrum.bpbatam.go.id).
