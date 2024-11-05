@@ -108,9 +108,3 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 Berikut module pendukung :
 
 - [desaign UI/UX figma](https://www.figma.com/file/kBWXqIICxrL1k37Ux5D41o/Service-Desk?type=design&node-id=67%3A1761&mode=design&t=pdqOQt4Z6wUofmqE-1).
-- [Takslist](https://docs.google.com/spreadsheets/d/102kWPZpRdSCV-nHPl-bTtqAkGXdDZ8Z4abZmqpQXlNY/edit#gid=0).
-- [Notulen Service Desk](https://docs.google.com/document/d/1W6PlfBDx67vydH5bGJMZYD0FSO1m-gEtR4x02rtH2jg/edit).
-- [Work flow](https://whimsical.com/work-flow-C761mdmTDVxexAB32Ch7yC).
-- [Site map](https://whimsical.com/sitemap-XnoJmpWt1WD73URmebWDC2).
-- [Task flow](https://whimsical.com/task-flow-XV3YRbqtUBTYPKaxnMFHHL).
-- [Scrum](https://scrum.bpbatam.go.id).
